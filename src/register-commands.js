@@ -2,6 +2,7 @@ require('dotenv').config()
 const { REST, Routes, ApplicationCommandOptionType} = require('discord.js');
 
 
+
 const commands = [
     {
         name: 'icon',
@@ -39,7 +40,7 @@ const commands = [
                 ]
             }
         ]
-    }
+    },
 ]
 
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN); 
