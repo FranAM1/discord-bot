@@ -10,6 +10,7 @@ const client = new Client({
     ]
 });
 
+
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
@@ -21,6 +22,14 @@ client.on('interactionCreate', interaction => {
         const user = interaction.options.getUser('user');
 
         interaction.reply(`${user.displayAvatarURL()}`);
+    }
+    else if (interaction.commandName === 'delete-msg') {
+        const channel = interaction.options.getChannel('channel');
+        const amount = interaction.options.getInteger('amount');
+
+        channel.bulkDelete(amount, true)
+            .then(messages => interaction.reply(`Deleted ${messages.size} messages`))
+            .catch(error => interaction.reply(`Error: ${error}`));
     }
 })
 
